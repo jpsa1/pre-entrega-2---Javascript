@@ -3,16 +3,22 @@
 // Opcion 1: cargar Productos
 
 function cargarProductos() {
-    let nombre = prompt('Indique el NOMBRE del producto: ')
-    let descripcion = prompt('Indique la DESCRIPCIÓN del producto: ')
-    let precio = prompt('Indique el PRECIO neto del producto: ')
-    let stock = prompt('Indique el STOCK disponible del producto: ')
+    
+    let nombre = ""
+    let descripcion = ""
+    let precio = 0
+    let stock = 0
+    
+    
+    nombre = prompt('Indique el NOMBRE del producto: ')
+    descripcion = prompt('Indique la DESCRIPCIÓN del producto: ')
+    precio = prompt('Indique el PRECIO neto del producto: ')
+    stock = prompt('Indique el STOCK disponible del producto: ')
 
-    productos.push(new producto(nombre, descripcion, precio, stock))
-
-    //CONTROL
-    for (let i=0; i < productos.length; i++) {
-         console.log(productos[i])
+    if (nombre == "" || descripcion == "" || precio == 0 || stock == 0) {
+        alert('Algun dato fue mal ingresado. Intente nuevamente')
+    }else{
+        productos.push(new producto(nombre, descripcion, precio, stock))
     }
 }
 
@@ -44,6 +50,13 @@ function listarProductos(lista,tipo) {
 // Opcion 3: eliminar Productos.
 
 function eliminarProductos(lista,tipo) {
+    
+    // Antes de eliminar un producto, primero hay que asegurarse que no haya productos en el carrito
+    if (tipo == "productos" && carrito.length != 0) {
+        alert('Antes de eliminar un producto de la tienda, tiene que VACIAR el carrito.')
+        return
+    }
+    
     let eliminarProducto = parseInt(prompt(listarProductos(lista) + '\n \n Indique el producto a eliminar: '))
     
     if (eliminarProducto < 0 || eliminarProducto > (lista.length - 1)) {

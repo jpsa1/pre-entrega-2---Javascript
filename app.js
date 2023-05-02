@@ -26,7 +26,7 @@ do{
             alert(listarProductos(productos, "productos"))
             break
         case 3:
-            eliminarProductos(productos)
+            eliminarProductos(productos, "productos")
             break
         case 4:
             agregarAlCarrito()
